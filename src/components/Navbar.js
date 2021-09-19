@@ -10,18 +10,20 @@ const Navbar = ({admin, user}) => {
 				<Link to="/tokens">Tokens</Link>
 			</span>
 			{
-				user === null ?
-					<span>
-						<Link to="/login">Login</Link>
-					</span>
-				: ""
-			}
-			{
 				admin ? 
 					<span>
 						<Link to="/admin-panel">Admin</Link>
 					</span>
 				 : ""
+			}
+			{
+				user === null ?
+					<span>
+						<Link to="/login">Login</Link>
+					</span>
+				: <span>
+					<Link to="/logout">Logout</Link>
+				</span>
 			}
 		</nav>
 	);

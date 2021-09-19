@@ -6,7 +6,7 @@ import Login from './components/Login';
 import Admin from './components/Admin';
 import { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import config from '../config';
+import config from './components/config';
 import axios from 'axios';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
   const [user, getUser] = useState(null);
   const { DOMAIN } = config;
   const url = `${DOMAIN}/api/auth/@me`;
-  
+
   useEffect(() => {
     const getAdm = async () => {
       try {
@@ -30,8 +30,16 @@ function App() {
       }
     }
     getAdm();
-  }, []);
+  }, [url]);
+  function Logout() {
+    localStorage.removeItem('token');
+    window.href = "/";
 
+    return (
+      <h1>Cerrando sesión</h1>
+    )
+  }
+  
   return (
     <>
       <Navbar admin={admin} user={user}/>
@@ -40,13 +48,19 @@ function App() {
           <Home />
         </Route>
         <Route exact path="/tokens"> 
-          <Tokens />
+          <Tokens user={user}/>
         </Route>
         <Route exact path="/login">
-          <Login setAdmin={setAdmin} />
+          <Login setAdmin={setAdmin} user={user}/>
+        </Route>
+        <Route exact path="/logout">
+          <Logout />
         </Route>
         <Route exact path="/admin-panel">
           <Admin user={user}/>
+        </Route>
+        <Route path="*">
+          <Home />
         </Route>
       </Switch>
     </>

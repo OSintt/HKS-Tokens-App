@@ -104,6 +104,7 @@ button {
   text-align: center;
   color: #fff;
   font-family: monospace;
+  outline: 0;
 }
 
 button:hover {
@@ -113,25 +114,69 @@ button:hover {
 .tokens-box {
   padding: 1em;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
 .token-card {
-  border: 1px solid #fff;
   padding: 10px;
-  width: auto;
-  
+  width: 200px;
+  margin: 10px;
+  transition: all .2s ease-in-out;
+}
+
+.token-card:hover {
+  background: #9c9c9c;
+  opacity: .7;
+  cursor: pointer;
+}
+
+.token-info {
+  display: none;
+}
+
+.token-card:hover .token-info {
+  color: #fff;
+  background: #000;
+  border-radius: 5px;
+  padding: 2px;
+  font-size: 12px;
+  position: absolute;
+  display: block;
+}
+
+.token-card:hover h3, 
+.token-card:hover p, 
+.token-card:hover p span {
+  color: #000;
+}
+
+.token-card h3 {
+  color: #a6a6a6;
+  word-break: break-all;
+}
+
+.token-card img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #fff;
 }
 
 .token-card .token-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  height: 70px;
 }
 
 .token-card .token-card-body {
-  text-align: left;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+}
+
+.token-card p span {
+  color: #ac94c4;
 }
 
 .admin-components {

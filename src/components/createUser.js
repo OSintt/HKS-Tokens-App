@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
-import config from '../config';
+import config from './config';
 
 const CreateUser = ({setUsers, users}) => {
 
 	const [username, getUsername] = useState(null);
 	const [password, getPassword] = useState(null);
 	const [error, setError] = useState(null);
-	const [path, setPath] = useState(null);
 	const { DOMAIN } = config;
 	const listenPassword = e => {
 		getPassword(e.target.value);
@@ -19,7 +18,7 @@ const CreateUser = ({setUsers, users}) => {
 
 	const sendForm = async e => {
 		try {
-			const res = await axios.post(`${DOMAIN}/api/auth/signup`, {
+			await axios.post(`${DOMAIN}/api/auth/signup`, {
 				headers: {
 					'Content-Type': 'application/json'
 				},
