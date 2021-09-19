@@ -1,0 +1,187 @@
+body {
+  background: #000;
+  color: #fff;
+}
+
+.container {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+h1 {
+  color: #373138;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+h1 span, h2 span {
+  color: #67448f;
+}
+
+h2 span {
+  text-decoration: underline;
+}
+
+h2 {
+  color: #373138;
+  margin-top: 0;
+}
+
+p {
+  color:  #fff;
+}
+
+a {
+  text-decoration: none;
+  color: #6c6c6c;
+  transition: .2s all ease-in-out;
+}
+
+a:hover {
+  color: #ac94c4;
+  text-decoration: underline;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+nav span {
+  margin: 1em;
+}
+
+.container-tokens {
+  padding: 1em;
+  text-align: center;
+}
+
+.container-tokens input {
+  margin: 1em;
+}
+
+input {
+  color: #fff;
+  background: none;
+  border: 1px solid #373138;
+  outline: 0;
+  padding: 7px;
+  margin: auto;
+}
+
+.container-login {
+  min-height: 75vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-login .input-group {
+  padding: 1em;
+  display: grid;
+  align-items: center;
+  justify-content: left;
+}
+
+.container-login .input-group .login-input {
+  margin: .2em;
+}
+
+.container-login .input-group .login-input input {
+  width: 350px;
+}
+
+button {
+  padding: 10px;
+  background: none;
+  border: none;
+  text-align: center;
+  color: #fff;
+  font-family: monospace;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.tokens-box {
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+.token-card {
+  border: 1px solid #fff;
+  padding: 10px;
+  width: auto;
+  
+}
+
+.token-card .token-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.token-card .token-card-body {
+  text-align: left;
+
+}
+
+.admin-components {
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+.admin-header {
+  text-align: center;
+}
+
+.you {
+  color: #ac94c4;
+}
+
+.users-container {
+  overflow : auto;
+  padding: 25px;
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.users-container .user-card {
+  padding: 0 .5em .5em .5em;
+  border: 1px solid #fff;
+  width: 200px;
+}
+
+.user-card h1 {
+  margin: 0;
+}
+
+.is-admin {
+  color: #a5a5a5;
+}
+
+.user-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-body span {
+  font-family: monospace;
+}
+
+.createuser-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
