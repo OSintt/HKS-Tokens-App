@@ -9,7 +9,7 @@ const Login = (props) => {
 	const [error, setError] = useState(null);
 	const [path, setPath] = useState(null);
 
-	const { setAdmin, user } = props; 
+	const { setAdmin, getUser, user } = props; 
 	const { DOMAIN } = config;
 
 	useEffect(() => {
@@ -41,10 +41,10 @@ const Login = (props) => {
 			if (res.data.admin === true) {
 				setAdmin(true);
 			}
-			
+			getUser(res.data.user);
 			setPath("/");
 		} catch(e) {
-			setError(e.response.data.message);
+			setError(e.response.data.response);
 		}
 	}
 

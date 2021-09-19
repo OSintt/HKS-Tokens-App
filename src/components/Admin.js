@@ -9,6 +9,7 @@ const Admin = ({user}) => {
 	const [error, setError] = useState(null);
 	const [path, setPath] = useState(null);
 	const [username, setUsername] = useState(null);
+	const [userId, setUserId] = useState(null);
 
 	const { DOMAIN } = config;
 	useEffect(() => {
@@ -31,12 +32,14 @@ const Admin = ({user}) => {
 	useEffect(() => {
 		if (user !== null) {
 			setUsername(user.username);
+			setUserId(user._id);
+			if (user.admin === false) return setPath("/");
 		} else {
 			return setPath("/");
 		}
 	}, [user])
 	
-	if (path !== null) return <Redirect to="/" />
+	if (path !== null) return <Redirect to="/" />	
 	
 	const banUser = async (id) => {
 		try {
@@ -75,7 +78,7 @@ const Admin = ({user}) => {
 					<span>A</span>
 					dmin panel
 				</h1>
-				{user !== null ? <h2>Welcome back <span>{user.username}</span>!</h2> : ""}
+				{user !== null ? <h2>Welcome back <span>{username}</span>!</h2> : ""}
 			</div>
 			<div className="admin-components">
 				<CreateUser setUsers={setUsers} users={users}/>
@@ -85,13 +88,13 @@ const Admin = ({user}) => {
 						users.map(({username, admin, mod, _id}) => (
 							<div className="user-card" key={_id}>
 								<div className="user-header">
-									<h3 className={_id === user._id ? "you" : ""}>{username}</h3>
+									<h3 className={_id === userId ? "you" : ""}>{username}</h3>
 								</div>
 								<div className="user-body">
 									<code className="is-admin">{admin ? "Admin" : mod ? "Mod" : "User"}</code>
 									<span>
 										{
-											_id === user._id ? 
+											_id === userId ? 
 												
 												"You" :
 													<>

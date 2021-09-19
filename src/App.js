@@ -4,6 +4,7 @@ import Tokens from './components/Tokens';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Admin from './components/Admin';
+import Logout from './components/Logout';
 import { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import config from './components/config';
@@ -26,20 +27,15 @@ function App() {
         getUser(res.data.user);
         if (res.data.admin === true) return setAdmin(true);
       } catch(e) {
-        console.log(e.response.data.message);
+        console.log(e.response.data.response);
       }
     }
     getAdm();
   }, [url]);
-  function Logout() {
-    localStorage.removeItem('token');
-    window.href = "/";
 
-    return (
-      <h1>Cerrando sesión</h1>
-    )
-  }
-  
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   return (
     <>
       <Navbar admin={admin} user={user}/>
@@ -51,10 +47,10 @@ function App() {
           <Tokens user={user}/>
         </Route>
         <Route exact path="/login">
-          <Login setAdmin={setAdmin} user={user}/>
+          <Login setAdmin={setAdmin} user={user} getUser={getUser}/>
         </Route>
         <Route exact path="/logout">
-          <Logout />
+          <Logout getUser={getUser} setAdmin={setAdmin}/>
         </Route>
         <Route exact path="/admin-panel">
           <Admin user={user}/>

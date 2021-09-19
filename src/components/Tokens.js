@@ -23,7 +23,7 @@ const Tokens = ({user}) => {
 				setTokens(res.data.data);
 				setGotTokens(res.data.data);
 			} catch(e) {
-				setError(e.response.data.message);
+				setError(e.response.data.response);
 			}
 		}
 		fetchTokens();
