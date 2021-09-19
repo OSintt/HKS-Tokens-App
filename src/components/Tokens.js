@@ -23,11 +23,11 @@ const Tokens = ({user}) => {
 				setTokens(res.data.data);
 				setGotTokens(res.data.data);
 			} catch(e) {
-				setError(e.response ? e.response.data.message : "Ocurrió un error inesperado");
+				setError(e.response.data.message);
 			}
 		}
 		fetchTokens();
-	}, [url]);
+	}, []);
 
 	useEffect(() => {
 		if (user !== null) {

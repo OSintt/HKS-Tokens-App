@@ -44,7 +44,7 @@ const Login = (props) => {
 			
 			setPath("/");
 		} catch(e) {
-			setError(e.response ? e.response.data.message : "Ocurrió un error inesperado");
+			setError(e.response.data.message);
 		}
 	}
 

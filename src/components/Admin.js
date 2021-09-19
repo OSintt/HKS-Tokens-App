@@ -36,9 +36,7 @@ const Admin = ({user}) => {
 		}
 	}, [user])
 	
-	useEffect(() => {
-		if (path !== null) return <Redirect to="/" />
-	}, [path]);
+	if (path !== null) return <Redirect to="/" />
 	
 	const banUser = async (id) => {
 		try {
@@ -51,7 +49,7 @@ const Admin = ({user}) => {
 			userCopy.splice(userCopy.indexOf(userCopy.find(u => id === u._id)));
 			setUsers(userCopy);
 		} catch(e) {
-			setError(e.response ? e.response.data.message : "Ocurrió un error inesperado");
+			setError(e.response.data.message);
 		}
 	}
 	const makeAdmin = async (id) => {
@@ -77,7 +75,7 @@ const Admin = ({user}) => {
 					<span>A</span>
 					dmin panel
 				</h1>
-				{username ? <h2>Welcome back <span>{user.username}</span>!</h2> : ""}
+				{user !== null ? <h2>Welcome back <span>{user.username}</span>!</h2> : ""}
 			</div>
 			<div className="admin-components">
 				<CreateUser setUsers={setUsers} users={users}/>
