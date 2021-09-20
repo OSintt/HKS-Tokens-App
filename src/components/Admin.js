@@ -44,7 +44,7 @@ const Admin = ({user}) => {
 	
 	const banUser = async (id) => {
 		try {
-			await axios.delete(`${DOMAIN}/api/auth/users/g/${id}`, {}, {
+			await axios.delete(`${DOMAIN}/api/auth/users/g/${id}`, {
 				headers: {
 					'x-access-token': localStorage.getItem('token')
 				}
