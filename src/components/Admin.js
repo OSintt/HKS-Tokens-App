@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import config from './config';
 import CreateUser from './createUser';
+import { BiUser } from 'react-icons/bi';
+
 import './css/admin.css';
 
 const Admin = ({user}) => {
@@ -91,26 +93,35 @@ const Admin = ({user}) => {
 							<div className="user-card" key={_id}>
 								<div className="user-header">
 									<h3 className={_id === userId ? "you" : ""}>{username}</h3>
+									<BiUser />
 								</div>
 								<div className="user-body">
-									<code className="is-admin">{admin ? "Admin" : mod ? "Mod" : "User"}</code>
-									<span>
-										{
-											_id === userId ? 
-												
-												"You" :
-													<>
-														<button onClick={() => makeAdmin(_id)}>
-															{
-																mod ? "Take mod" : "Make mod"
-															}
-														</button>
-														<button onClick={() => banUser(_id)}>
-															Ban 
-														</button>
-													</>
-												}						
-									</span>
+									<div className="actions">
+										<span>Role</span>
+										<span>Actions</span>
+									</div>
+									<div className="data">
+										<code className="is-admin">{admin ? "Admin" : mod ? "Mod" : "User"}</code>
+										<span>
+											{
+												_id === userId ? 
+													
+													"Love<3" :
+														<div>
+															<button onClick={() => banUser(_id)}>
+																Ban 
+															</button>
+														</div>
+													}						
+										</span>
+									</div>
+									<div className="make-mod">
+										<button onClick={() => makeAdmin(_id)}>
+											{
+												mod ? "Take mod" : "Make mod"
+											}
+										</button>
+									</div>
 								</div>
 							</div>
 						))

@@ -19,22 +19,20 @@
   padding: 1em;
   justify-content: center;
   display: flex;
-
   box-sizing: border-box;
   flex-wrap: wrap;
 }
 
 .user-card {
-  padding: 0 .5em .5em .5em;
-  border-left: 1px solid #000;
-  border-top: 1px solid #000;
+  margin: 5px;
+  padding: 0 .5em;
+  border-bottom: 1px solid #000;
   width: 200px;
   transition: .2s all ease-in-out;
 }
 
 .user-card:hover {
-  border-left: 1px solid #a8a8a8;
-  border-top: 1px solid #a8a8a8;
+  border-bottom: 1px solid #a8a8a8;
   cursor: pointer;
 }
 
@@ -42,8 +40,14 @@
   transition: .2s all ease-in-out;
 }
 
-.user-card:hover h3 {
+.user-card .user-header:hover {
   color: #373138;
+}
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .user-card button {
@@ -55,13 +59,21 @@
   color: #a5a5a5;
 }
 
-.is-admin {
+.actions {
+  display: flex;
+  justify-content: space-between;
   color: #a5a5a5;
 }
 
-.user-body {
+.user-body .user-components {
+  display: grid;
+  align-items: center;
+}
+
+.user-body .data {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .user-body span {
@@ -76,4 +88,19 @@
 
 .createuser-container input {
   margin: 5px;
+}
+
+.make-mod {
+  display: flex;
+  justify-content: center;
+}
+
+.make-mod button {
+  background: #373138;
+  width: 100%;
+  
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 50px;
+  transition: all .2s ease-in-out;
 }
