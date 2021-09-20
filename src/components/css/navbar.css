@@ -1,0 +1,9 @@
+nav {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+nav span {
+  margin: 1em;
+}

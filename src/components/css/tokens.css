@@ -1,0 +1,99 @@
+.container-tokens {
+  padding: 1em;
+  text-align: center;
+}
+
+.container-tokens input {
+  margin: 1em;
+}
+
+.tokens-box {
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+.token-card {
+  padding: 1em;
+  width: 300px;
+  margin: 1em;
+  border-radius: .5em 0 0 0;
+  background: none;
+  transition: border .2s ease-in-out;
+  text-align: left;
+  border-top: 2px solid #18191C;
+  border-left: 2px solid #18191C;
+  font-family: Helvetica;
+
+}
+
+.token-card:hover {
+  cursor: pointer;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+}
+
+.token-info {
+  display: block;
+  color: transparent; 
+  border-radius: 5px;
+  padding: 2px;
+  font-size: 12px;
+  border: none;
+}
+
+.token-card:hover .token-info {
+  color: #fff;
+  background: #18191C;
+}
+
+.token-card h3 {
+  color: #a6a6a6;
+  word-break: break-all;
+  font-weight: 600;
+}
+
+.token-card h3 span {
+  color: whitesmoke;
+}
+
+.about-me {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  color: #b9bbbe;
+}
+
+.token-card img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  border: 2px solid #fff;
+}
+
+.token-card img:hover {
+  opacity: .5;
+}
+
+.token-card .token-card-header {
+  padding: 5px 0;
+  display: flex;
+}
+
+.token-card .token-card-body hr {
+  margin: 0 10px;
+  border: 1px solid #18191C;
+}
+
+.token-card .token-card-body p {
+  font-family: Whitney, sans-serif;
+  margin: 5px 0;
+  padding: 0;
+  color: #dcddde;
+  font-size: 14px;
+}
+
+.token-card p span {
+  color: #ac94c4;
+}

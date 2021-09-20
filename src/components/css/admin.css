@@ -1,0 +1,79 @@
+.admin-components {
+  padding: 1em;
+}
+
+.users-header {
+  text-align: center;
+}
+
+.admin-header {
+  text-align: center;
+}
+
+.you {
+  color: #ac94c4;
+}
+
+.users-container {
+  overflow : auto;
+  padding: 1em;
+  justify-content: center;
+  display: flex;
+
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.user-card {
+  padding: 0 .5em .5em .5em;
+  border-left: 1px solid #000;
+  border-top: 1px solid #000;
+  width: 200px;
+  transition: .2s all ease-in-out;
+}
+
+.user-card:hover {
+  border-left: 1px solid #a8a8a8;
+  border-top: 1px solid #a8a8a8;
+  cursor: pointer;
+}
+
+.user-card h3 {
+  transition: .2s all ease-in-out;
+}
+
+.user-card:hover h3 {
+  color: #373138;
+}
+
+.user-card button {
+  padding: 0;
+  margin-left: 5px;
+}
+
+.user-card button:hover {
+  color: #a5a5a5;
+}
+
+.is-admin {
+  color: #a5a5a5;
+}
+
+.user-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-body span {
+  font-family: monospace;
+}
+
+.createuser-container {
+  padding: 1em 1em 0 1em;
+  justify-content: center;
+  text-align: center;
+}
+
+.createuser-container input {
+  margin: 5px;
+}

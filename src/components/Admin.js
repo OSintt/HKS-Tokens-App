@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import config from './config';
 import CreateUser from './createUser';
+import './css/admin.css';
 
 const Admin = ({user}) => {
 	const [users, setUsers] = useState([]);
@@ -82,8 +83,9 @@ const Admin = ({user}) => {
 			</div>
 			<div className="admin-components">
 				<CreateUser setUsers={setUsers} users={users}/>
+				<code>{error}</code>
+				<h3 className="users-header">User list</h3>
 				<div className="users-container">
-					<code>{error}</code>
 					{
 						users.map(({username, admin, mod, _id}) => (
 							<div className="user-card" key={_id}>

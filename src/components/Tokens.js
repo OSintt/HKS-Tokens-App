@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from './config';
+import './css/tokens.css';
+
 import GotTokens from './tokens/GotTokens';
 
 const Tokens = ({user}) => {
