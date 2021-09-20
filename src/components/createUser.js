@@ -23,7 +23,8 @@ const CreateUser = ({setUsers, users}) => {
 				password
 			}, {
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
+					'x-access-token': localStorage.getItem('token')
 				}
 			});
 			let userCopy = [...users];
