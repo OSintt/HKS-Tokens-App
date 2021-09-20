@@ -19,11 +19,12 @@ const CreateUser = ({setUsers, users}) => {
 	const sendForm = async e => {
 		try {
 			await axios.post(`${DOMAIN}/api/auth/signup`, {
-				headers: {
-					'Content-Type': 'application/json'
-				},
 				username,
 				password
+			}, {
+				headers: {
+					'Content-Type': 'application/json'
+				}
 			});
 			let userCopy = [...users];
 			userCopy.push({

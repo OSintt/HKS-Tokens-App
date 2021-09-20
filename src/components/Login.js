@@ -31,11 +31,12 @@ const Login = (props) => {
 	const sendForm = async e => {
 		try {
 			const res = await axios.post(`${DOMAIN}/api/auth/signin`, {
-				headers: {
-					'Content-Type': 'application/json'
-				},
 				username,
 				password
+			}, {
+				headers: {
+					'Content-Type': 'application/json'
+				}
 			});
 			localStorage.setItem('token', res.data.token);
 			if (res.data.admin === true) {
