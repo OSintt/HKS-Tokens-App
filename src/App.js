@@ -9,11 +9,15 @@ import { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import config from './components/config';
 import axios from 'axios';
+import io from 'socket.io-client';
+
+const { DOMAIN } = config;
+const socket = io.connect(DOMAIN);
 
 function App() {
   const [admin, setAdmin] = useState(false);
   const [user, getUser] = useState(null);
-  const { DOMAIN } = config;
+  const [usersOnline, setUsersOnline] = useState([]);
   const url = `${DOMAIN}/api/auth/@me`;
 
   useEffect(() => {
@@ -31,17 +35,25 @@ function App() {
       }
     }
     getAdm();
-  }, [url]);
+  }, []);
 
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    socket.emit('connection:online', {
+      user: localStorage.getItem("token")
+    });
+  }, []);
+
+
+  socket.on('connection:online', data => {
+    setUsersOnline(data.online)
+  });
+
   return (
     <>
       <Navbar admin={admin} user={user}/>
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home user={user} usersOnline={usersOnline}/>
         </Route>
         <Route exact path="/tokens"> 
           <Tokens user={user}/>
@@ -53,10 +65,10 @@ function App() {
           <Logout getUser={getUser} setAdmin={setAdmin}/>
         </Route>
         <Route exact path="/admin-panel">
-          <Admin user={user}/>
+          <Admin user={user} onlineUsers={usersOnline}/>
         </Route>
         <Route path="*">
-          <Home />
+          <Home user={user} usersOnline={usersOnline}/>
         </Route>
       </Switch>
     </>

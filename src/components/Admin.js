@@ -3,11 +3,12 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import config from './config';
 import CreateUser from './createUser';
-import { BiUser } from 'react-icons/bi';
+import { BiUser, BiRadioCircleMarked} from 'react-icons/bi';
+
 
 import './css/admin.css';
 
-const Admin = ({user}) => {
+const Admin = ({user, onlineUsers}) => {
 	const [users, setUsers] = useState([]);
 	const [error, setError] = useState(null);
 	const [path, setPath] = useState(null);
@@ -92,8 +93,21 @@ const Admin = ({user}) => {
 						users.map(({username, admin, mod, _id}) => (
 							<div className="user-card" key={_id}>
 								<div className="user-header">
-									<h3 className={_id === userId ? "you" : ""}>{username}</h3>
-									<BiUser />
+									<h3 className={_id === userId ? "you" : ""}>
+										{username}
+									</h3>
+									<div className="user-icon">
+										<span>
+											{
+												onlineUsers.includes(username) ?
+												<BiRadioCircleMarked /> 
+												: ""
+											}
+										</span>
+										<span>
+											<BiUser />
+										</span>
+									</div>
 								</div>
 								<div className="user-body">
 									<div className="actions">

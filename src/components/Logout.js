@@ -8,8 +8,8 @@ const Logout = ({getUser, setAdmin}) => {
 		getUser(null);
 		setAdmin(false);
 		setPath("/");
-		window.href = "/"
-	}, []);
+		window.location.reload();
+	});
 
 	if (path !== null) return <Redirect to="/" />
 	return (

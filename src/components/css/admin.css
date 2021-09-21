@@ -16,8 +16,8 @@
 
 .users-container {
   overflow : auto;
-  padding: 1em;
-  justify-content: center;
+  padding: 0 2em;
+  justify-content: space-between;
   display: flex;
   box-sizing: border-box;
   flex-wrap: wrap;
@@ -36,11 +36,13 @@
   cursor: pointer;
 }
 
-.user-card h3 {
+.user-card h3,
+.user-card .user-icon span:hover  {
   transition: .2s all ease-in-out;
 }
 
-.user-card .user-header:hover {
+.user-card h3:hover, 
+.user-card .user-icon span:hover {
   color: #373138;
 }
 

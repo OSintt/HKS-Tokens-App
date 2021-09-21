@@ -44,6 +44,7 @@ const Login = (props) => {
 			}
 			getUser(res.data.user);
 			setPath("/");
+			window.location.reload();
 		} catch(e) {
 			setError(e.response.data.response);
 		}

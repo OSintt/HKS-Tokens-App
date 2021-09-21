@@ -9,3 +9,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #7654a3;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: none;
+}
