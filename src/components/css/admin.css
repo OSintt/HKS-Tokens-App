@@ -1,5 +1,13 @@
+.admin-box {
+  display: flex;
+  justify-content: center;
+}
+
 .admin-components {
-  padding: 1em;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .users-header {
@@ -15,12 +23,17 @@
 }
 
 .users-container {
-  overflow : auto;
-  padding: 0 2em;
-  justify-content: space-between;
+  padding: 0;
   display: flex;
-  box-sizing: border-box;
+  justify-content: center;
+}
+
+.users-box {
+  width: 1000px;
+  display: flex;
   flex-wrap: wrap;
+  align-content: center;
+  justify-content: left;
 }
 
 .user-card {
@@ -84,7 +97,9 @@
 
 .createuser-container {
   padding: 1em 1em 0 1em;
-  justify-content: center;
+  display: flex;
+  
+  align-items: center;
   text-align: center;
 }
 
@@ -100,9 +115,45 @@
 .make-mod button {
   background: #373138;
   width: 100%;
-  
   margin: 10px 0;
   padding: 10px;
   border-radius: 50px;
   transition: all .2s ease-in-out;
+}
+
+.createuser-container img {
+  animation: logo-float 2s infinite alternate;
+}
+
+@keyframes logo-float{
+  from {
+    transform: translateY(-10%);
+    filter: drop-shadow(0 0 25px rgb(162, 140, 192));
+  }
+  to {
+    transform: translateY(0%);
+    filter: drop-shadow(0 0 10px rgb(162, 140, 192));
+  }
+}
+
+@media (max-width: 758px) {
+  .users-box {
+    width: auto;
+    justify-content: center;
+  }
+  .createuser-box {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1128px) {
+  .createuser-box {
+    display: flex;
+  }
+
+  .users-box {
+    width: auto;
+    justify-content: center;
+  }
 }

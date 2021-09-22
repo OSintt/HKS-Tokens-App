@@ -55,6 +55,11 @@ input {
   margin: auto;
 }
 
+input:focus {
+  transition: .2s border ease-in-out;
+  border: 1px solid #eee;
+}
+
 .container-login {
   min-height: 75vh;
   text-align: center;

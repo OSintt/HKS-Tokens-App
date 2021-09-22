@@ -5,19 +5,20 @@
 
 .container-tokens input {
   margin: 1em;
-  transition: .2s border ease-in-out;
-}
-
-.container-tokens input:focus {
-  border: 1px solid #eee;
 }
 
 .tokens-box {
   padding: 0;
   display: flex;
+  justify-content: center;
+}
+
+.tokens-all {
+  width: 1300px;
+  display: flex;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: center;
+  justify-content: left;
 }
 
 .token-card {
@@ -87,6 +88,7 @@
 .token-card .token-card-header {
   padding: 5px 0;
   display: flex;
+  justify-content: space-between;
 }
 
 .token-card .token-card-body hr {
@@ -104,4 +106,19 @@
 
 .token-card p span {
   color: #ac94c4;
+}
+
+.login-token-button {
+  transition: .2s color ease-in-out;
+  color: #a8a8a8;
+}
+
+.login-token-button:hover {
+  color: #ac94c4;
+}
+
+@media (max-width: 758px) {
+  .tokens-all {
+    justify-content: center;
+  }
 }

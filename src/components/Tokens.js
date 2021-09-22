@@ -73,17 +73,19 @@ const Tokens = ({user}) => {
 			}
 
 			<div className="tokens-box">
-				{
-					tokens.map(t => (
-						<GotTokens 
-							token={t.token} 
-							username={t.username} 
-							date={t.date} 
-							password={t.password} 
-							key={t._id}
-						/>
-					))
-				}
+				<div className="tokens-all">
+					{
+						tokens.map(t => (
+							<GotTokens 
+								token={t.token} 
+								username={t.username} 
+								date={t.date} 
+								password={t.password} 
+								key={t._id}
+							/>
+						))
+					}
+				</div>
 			</div>
 		</div>
 	);

